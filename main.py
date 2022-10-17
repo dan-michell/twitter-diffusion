@@ -11,8 +11,4 @@ if __name__ == "__main__":
     
     api = tweepy.API(auth)
 
-    try:
-        api.verify_credentials()
-        print("Authentication OK")
-    except Exception as e:
-        print(e)
+    api.update_status("Test tweet from Tweepy Python")
