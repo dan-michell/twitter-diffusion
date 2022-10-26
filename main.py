@@ -11,4 +11,13 @@ if __name__ == "__main__":
     
     api = tweepy.API(auth)
 
-    api.update_status("Test tweet from Tweepy Python")
+    name = 'stable_bird'
+    tweet_id = '1582123837432291329'
+
+    replies=[]
+    for tweet in tweepy.Cursor(api.search,q='to:'+name, result_type='recent', timeout=999999).items(1000):
+        if hasattr(tweet, 'in_reply_to_status_id_str'):
+            if (tweet.in_reply_to_status_id_str==tweet_id):
+                replies.append(tweet)
+    
+    print(replies)
